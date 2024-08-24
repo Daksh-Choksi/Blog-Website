@@ -1,1 +1,1 @@
-web: cd new-app && npm start
+web: node PostedBlogsBackend.js
