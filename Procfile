@@ -1,0 +1,1 @@
+web: cd new-app && node PostedBlogsBackend.js
