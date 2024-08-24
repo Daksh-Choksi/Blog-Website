@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "start": "node PostedBlogsBackend.js"
+    "start": "cd new-app && node PostedBlogsBackend.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
