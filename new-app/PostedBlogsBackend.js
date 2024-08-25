@@ -27,11 +27,7 @@ let app = express();
 
 
 app.use(bodyParser.json());
-app.use(cors({
-  origin: 'https://new-create-check.onrender.com', // Replace with your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type']
-}));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
