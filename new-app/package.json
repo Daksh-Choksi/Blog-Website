@@ -6,12 +6,12 @@
   "homepage": "https://bhinnda.github.io/new-create-check",
   "scripts": {
     "dev": "vite",
-    "build": "cd new-app && vite build",
+    "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "start": "cd new-app && node PostedBlogsBackend.js"
+    "start": "node PostedBlogsBackend.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
