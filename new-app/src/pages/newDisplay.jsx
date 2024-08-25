@@ -8,7 +8,7 @@ export default function newDisplay() {
     return Post ? JSON.parse(Post) : []
   })
   useEffect(() => {
-    axios.get('http://localhost:5000/posts')
+    axios.get('https://new-create-check.onrender.com/posts')
     .then((response) => {
       response.data.map((user) => {
         if (user._id === id) {

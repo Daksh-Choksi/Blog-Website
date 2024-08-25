@@ -12,7 +12,7 @@ export default function Chat() {
   let { id } = useParams();
   console.log(id, ID)
   useEffect(() => {
-    axios.get('http://localhost:5000/profiles')
+    axios.get('https://new-create-check.onrender.com/profiles')
     .then((response) => {
       response.data.map((res) => {
         if (res._id === ID) {
@@ -25,13 +25,13 @@ export default function Chat() {
   useEffect(() => {
     const pusher = new Pusher('63cbacee7831a9728515', {
       cluster: 'us2',
-      authEndpoint: 'http://localhost:5000/pusher/auth',
+      authEndpoint: 'https://new-create-check.onrender.com/pusher/auth',
       logToConsole: true
     });
 
     const channel = pusher.subscribe(`private-user-${ID}`);
     channel.bind('message', function(data) {
-      axios.get('http://localhost:5000/message')
+      axios.get('https://new-create-check.onrender.com/message')
       .then((response) => {
         console.log(response.data)
         let check = []
@@ -56,13 +56,13 @@ export default function Chat() {
   }, [message, ID]);
 
   const sendMessage = async () => {
-    await axios.post('http://localhost:5000/message', {
+    await axios.post('https://new-create-check.onrender.com/message', {
       username,
       message,
       userId: id,
       senderId: ID,
     });
-    await axios.get('http://localhost:5000/message')
+    await axios.get('https://new-create-check.onrender.com/message')
     .then((response) => {
       console.log(response.data)
       let check = []
@@ -82,7 +82,7 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:5000/message')
+    axios.get('https://new-create-check.onrender.com/message')
     .then((response) => {
       console.log(response.data)
       let check = []

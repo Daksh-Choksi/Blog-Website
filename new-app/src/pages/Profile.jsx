@@ -47,7 +47,7 @@ export default function Profile() {
 
   useEffect(() => {
     let followers2 = JSON.parse(localStorage.getItem('profiles'))
-      axios.get('http://localhost:5000/profiles')
+      axios.get('https://new-create-check.onrender.com/profiles')
       .then((response) => {
         response.data.map((res) => {
           if (res._id === followers2) {
@@ -122,7 +122,7 @@ export default function Profile() {
   const sendTokenToBackend = async (token) => {
     let userId = JSON.parse(localStorage.getItem('profiles'))
     try {
-      const response = await fetch(`http://localhost:5000/profiles/${userId}/fcm-token`, {
+      const response = await fetch(`https://new-create-check.onrender.com/profiles/${userId}/fcm-token`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ export default function Profile() {
     try {
 
       const method = followerId ? 'PUT' : 'POST';
-      const url = followerId ? `http://localhost:5000/profiles/${followerId}` : 'http://localhost:5000/profiles';
+      const url = followerId ? `https://new-create-check.onrender.com/profiles/${followerId}` : 'https://new-create-check.onrender.com/profiles';
 
       const response = await fetch(url, {
         method,
@@ -183,7 +183,7 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:5000/profiles')
+    axios.get('https://new-create-check.onrender.com/profiles')
     .then(response => {
       response.data.map((res) => {
         if (res.email === loginInfo.email && res.password === loginInfo.password) {
@@ -231,7 +231,7 @@ export default function Profile() {
         Follow = JSON.parse(localStorage.getItem('follow'))
       }
       console.log(Follow)
-      axios.get('http://localhost:5000/profiles')
+      axios.get('https://new-create-check.onrender.com/profiles')
       .then(response => {
         response.data.map((res) => {
           if (followers2 === res._id) {
@@ -279,7 +279,7 @@ export default function Profile() {
         })
       }
       let ID;
-      axios.get('http://localhost:5000/posts')
+      axios.get('https://new-create-check.onrender.com/posts')
       .then((response) => {
         response.data.map((res) => {
           if (res.user._id === id) {
@@ -289,18 +289,18 @@ export default function Profile() {
         console.log(ID)
         // arre jab ye delete ho rha hai then delete the follower here locally also.
         if (ID !== undefined) {
-          axios.delete(`http://localhost:5000/posts/${ID}/followers`, {data: {Id: followers2, followingId: id}})
+          axios.delete(`https://new-create-check.onrender.com/posts/${ID}/followers`, {data: {Id: followers2, followingId: id}})
           .then((response) => {
           console.log(response.data.post._id)
           let ID1 = (response.data.post._id)
-          axios.post(`http://localhost:5000/posts/${ID1}/keepFollowers`)
+          axios.post(`https://new-create-check.onrender.com/posts/${ID1}/keepFollowers`)
           .then((repsonse) => console.log(repsonse.data))
           .catch(error => console.error(error))
         })
         .catch(error => console.error(error))
         }
         else {
-          axios.delete(`http://localhost:5000/posts/${id}/followersAfterNoPost`, {data: {Id: followers2}})
+          axios.delete(`https://new-create-check.onrender.com/posts/${id}/followersAfterNoPost`, {data: {Id: followers2}})
           .then(response => console.log(response.data))
           .catch(error => console.error(error))
         }
@@ -313,7 +313,7 @@ export default function Profile() {
 
     function Followers() {
       let followers2 = JSON.parse(localStorage.getItem('profiles'))
-      axios.get('http://localhost:5000/profiles')
+      axios.get('https://new-create-check.onrender.com/profiles')
       .then((response) => {
         let uniqueFollowersId = []
         let uniqueFollowers = []
@@ -350,7 +350,7 @@ export default function Profile() {
     }, [secondFollower])
 
     useEffect(() => {
-      axios.get('http://localhost:5000/profiles')
+      axios.get('https://new-create-check.onrender.com/profiles')
       .then((response) => setAllProfiles(response.data))
     }, [])
 
@@ -420,9 +420,9 @@ export default function Profile() {
       console.log(followingId)
       let followers2 = JSON.parse(localStorage.getItem('profiles'))
       console.log(followers2)
-      axios.post(`http://localhost:5000/profiles/${followingId}/followers`, {ID: followers2})
+      axios.post(`https://new-create-check.onrender.com/profiles/${followingId}/followers`, {ID: followers2})
       .then((response) => {
-        axios.post(`http://localhost:5000/profiles/${followingId}/secondFollowers`, {ID: followers2})
+        axios.post(`https://new-create-check.onrender.com/profiles/${followingId}/secondFollowers`, {ID: followers2})
         alert(`followed ${response.data.username}`)
         console.log(response.data)
       })
