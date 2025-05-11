@@ -1,5 +1,0 @@
-next time se try to keep everything in the backend from the start except for maybe ids.
-
-2. saare useEffect check karle kyunki jab tu stricmode laga ta hai na then we get to know ke kaunse wale ko reload karna padega.
-
-ads dalne hai if you can.
