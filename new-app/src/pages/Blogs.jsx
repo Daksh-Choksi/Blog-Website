@@ -27,12 +27,12 @@ export default function App() {
     e.preventDefault()
     let ID = JSON.parse(localStorage.getItem('profiles'))
     console.log(ID)
-    await axios.get('https://new-create-check.onrender.com/posts')
+    await axios.get('http://localhost:5000/posts')
     .then((response) => {
       response.data.map((user) => {
         if (user._id === postId) {
           if (user.likedUsers.length === 0 || !user.likedUsers.includes(ID)) {
-            axios.post(`https://new-create-check.onrender.com/posts/${postId}/like`, {ID})
+            axios.post(`http://localhost:5000/posts/${postId}/like`, {ID})
             .then((res) => {
               setPosts((prevPosts) => prevPosts.map(post =>
                 post._id === postId ? {...post, likes: res.data.likes} : post
@@ -41,7 +41,7 @@ export default function App() {
             .catch((error) => console.error(error))
           }
           else if (user.likedUsers.includes(ID)) {
-            axios.post(`https://new-create-check.onrender.com/posts/${postId}/dislike`, {ID})
+            axios.post(`http://localhost:5000/posts/${postId}/dislike`, {ID})
             .then((res) => {
               console.log(response.data)
               setPosts((prevPosts) => prevPosts.map(post =>
@@ -55,7 +55,7 @@ export default function App() {
     })
     .catch(error => console.error(error))
     /*
-    await axios.post(`https://new-create-check.onrender.com/posts/${postId}/like`, {ID})
+    await axios.post(`http://localhost:5000/posts/${postId}/like`, {ID})
     .then((response) => {
       let userAlreadyLiked;
       if (response.data.userlikes.includes(ID)) {
@@ -72,7 +72,7 @@ export default function App() {
         ))
       }
       else if (userAlreadyLiked) {
-        axios.post(`https://new-create-check.onrender.com/posts/${postId}/dislike`, {ID})
+        axios.post(`http://localhost:5000/posts/${postId}/dislike`, {ID})
         .then((response) => {
           console.log(response.data)
           setPosts((prevPosts) => prevPosts.map(post =>
@@ -97,7 +97,7 @@ export default function App() {
     e.preventDefault();
     const commentText = comment[postId]?.text;
     if (commentText) {
-      axios.post(`https://new-create-check.onrender.com/posts/${postId}/comments`, {comment: commentText})
+      axios.post(`http://localhost:5000/posts/${postId}/comments`, {comment: commentText})
         .then(() => {
           setPosts((prevPosts) => prevPosts.map(post =>
             post._id === postId ? { ...post, comments: [...post.comments, {text: commentText}] } : post
@@ -114,7 +114,7 @@ export default function App() {
   useEffect(() => {
     migrateLocalStorageData();
     console.log("getting data")
-    axios.get('https://new-create-check.onrender.com/posts')
+    axios.get('http://localhost:5000/posts')
       .then(response => setPosts(response.data))
       .catch(error => console.error('Error fetching posts:', error));
   }, []);

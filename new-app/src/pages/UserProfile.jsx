@@ -24,13 +24,13 @@ export default function UserProfile() {
   useEffect(() => {
     migrateLocalStorageData();
     console.log("getting data")
-    axios.get('https://new-create-check.onrender.com/posts')
+    axios.get('http://localhost:5000/posts')
       .then(response => setPosts(response.data))
       .catch(error => console.error('Error fetching posts:', error));
   }, []);
   console.log(Posts, profile)
   useEffect(() => {
-    axios.get('https://new-create-check.onrender.com/profiles')
+    axios.get('http://localhost:5000/profiles')
     .then(response => setProfile(response.data))
   }, [])
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function UserProfile() {
 
   function Follow() {
     let followerId = JSON.parse(localStorage.getItem('profiles'))
-    axios.post(`https://new-create-check.onrender.com/posts/${id}/followers`, {ID: Id, ID2: followerId})
+    axios.post(`http://localhost:5000/posts/${id}/followers`, {ID: Id, ID2: followerId})
     .then((response) => {
       console.log(response.data)
       setFollow((prevFollow) => {

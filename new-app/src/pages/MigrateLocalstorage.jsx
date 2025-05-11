@@ -9,7 +9,7 @@ const migrateLocalStorageData = async () => {
   console.log(JSON.parse(localStorage.getItem("blogPublish")))
   try {
     // Fetch all profiles once
-    const response = await axios.get('https://new-create-check.onrender.com/profiles');
+    const response = await axios.get('http://localhost:5000/profiles');
     const profiles = response.data;
 
 
@@ -22,7 +22,7 @@ const migrateLocalStorageData = async () => {
         // Include authorId in the post data
         const postData = { ...post, authorId: authorProfile._id };
         console.log(postData)
-        await axios.post('https://new-create-check.onrender.com/posts', postData);
+        await axios.post('http://localhost:5000/posts', postData);
       } catch (error) {
         console.error('Error migrating post:', error);
       }

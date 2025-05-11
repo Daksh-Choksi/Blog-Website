@@ -20,17 +20,17 @@ export default function PostedBlogs() {
 
   function deleteBlog(postId) {
     let ID = JSON.parse(localStorage.getItem('profiles'))
-    axios.post(`https://new-create-check.onrender.com/posts/${ID}/keepFollowers1`)
+    axios.post(`http://localhost:5000/posts/${ID}/keepFollowers1`)
     .then(response => console.log(response.data))
     .catch(error => console.error(error))
     let save= []
     console.log(postId);
-    axios.delete('https://new-create-check.onrender.com/posts', {
+    axios.delete('http://localhost:5000/posts', {
       data: { id: postId, Id: ID }
     })
     .then(response => {
       // Optionally, fetch updated posts from the server after deletion
-      axios.get('https://new-create-check.onrender.com/posts')
+      axios.get('http://localhost:5000/posts')
         .then(response => {
           post.map((posts) => {
             response.data.map((res) => {
@@ -60,8 +60,8 @@ export default function PostedBlogs() {
       console.log(idCheck);
   
       let [postsResponse, profilesResponse] = await Promise.all([
-        axios.get('https://new-create-check.onrender.com/posts'),
-        axios.get('https://new-create-check.onrender.com/profiles')
+        axios.get('http://localhost:5000/posts'),
+        axios.get('http://localhost:5000/posts')
       ]);
   
       let posts = postsResponse.data;
@@ -103,7 +103,7 @@ export default function PostedBlogs() {
   useEffect(() => {
     let save = []
     migrateLocalStorageData();
-    axios.get('https://new-create-check.onrender.com/posts')
+    axios.get('http://localhost:5000/posts')
       .then(response => {
         console.log(response.data)
         post.map((posts) => {

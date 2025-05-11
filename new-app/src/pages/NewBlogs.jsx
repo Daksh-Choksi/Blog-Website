@@ -55,7 +55,7 @@ export default function Blog() {
     let post = {blogValue, contentId, title, author, uniqueCounter, secondid: secondId, email: loginInfo.email, password: loginInfo.password}
     localStorage.setItem("blogPost", JSON.stringify({blogValue, contentId, title, author, uniqueCounter, secondid: secondId, email: loginInfo.email, password: loginInfo.password}))
     console.log(contentId, post)
-    axios.post(`https://new-create-check.onrender.com/profiles/${Id}/savedBlogs`, post)
+    axios.post(`http://localhost:5000/profiles/${Id}/savedBlogs`, post)
     .then((response) => {
       console.log(response.data)
     })

@@ -10,7 +10,7 @@ import * as url from 'url'
 import Pusher from 'pusher'
 
 
-const __filename = url.fileURLToPath(import.meta.url);
+const __filename = url.fileURLToPath(import.meta.url);  
 const __dirname = path.dirname(__filename);
 const serviceAccountPath = path.resolve(__dirname, './src/pages/new-app-2e4bb-firebase-adminsdk-qj8pn-69fdefd2d2.json');
 

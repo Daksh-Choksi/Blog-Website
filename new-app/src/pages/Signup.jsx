@@ -86,7 +86,7 @@ export let signupActions = async ({ request }) => {
 
   let toggler = false
 
-  await axios.get('https://new-create-check.onrender.com/profiles')
+  await axios.get('http://localhost:5000/profiles')
   .then((response) => {
     response.data.map((res) => {
       if (submission.email === res.email) {

@@ -40,7 +40,7 @@ export default function SavedBlogDisplay() {
     let Id = JSON.parse(localStorage.getItem('profiles'))
     let info = JSON.parse(localStorage.getItem("blogPost1"))
     console.log(info)
-    axios.get('https://new-create-check.onrender.com/profiles')
+    axios.get('http://localhost:5000/profiles')
     .then((response) => {
       response.data.map((res) => {
         if (res._id === Id) {
@@ -88,7 +88,7 @@ export default function SavedBlogDisplay() {
     let blogValue = editorRef.current.getContent({format: 'text'});
     let post = {blogValue, contentId, title, author, secondId, email, password}
     localStorage.setItem('blogPost', JSON.stringify({blogValue, contentId, title, author, secondId, email, password}))
-    axios.post(`https://new-create-check.onrender.com/profiles/${Id}/savedBlogs`, post)
+    axios.post(`http://localhost:5000/profiles/${Id}/savedBlogs`, post)
     .then((response) => {
       console.log(response)
     })
@@ -105,7 +105,7 @@ export default function SavedBlogDisplay() {
       }
     })
     console.log(ID)
-    axios.delete(`https://new-create-check.onrender.com/profiles/${Id}/savedBlogs`, {
+    axios.delete(`http://localhost:5000/profiles/${Id}/savedBlogs`, {
       data: {deleteId: ID}
     })
     .then((response) => {

@@ -26,7 +26,7 @@ export default function SavedBlog() {
   }, [blogs]);
 
   useEffect(() => {
-    axios.get('https://new-create-check.onrender.com/profiles')
+    axios.get('http://localhost:5000/profiles')
     .then((response) => {
       response.data.map((res) => {
         if (res._id === Id) {
