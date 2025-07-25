@@ -3,25 +3,15 @@ import mongoose from 'mongoose'
 import bodyParser from "body-parser"
 import cors from "cors"
 import multer from "multer"
-import path from "path"
+import path from "path" 
 import admin from 'firebase-admin'
 import * as fs from 'fs'
 import * as url from 'url'
 import Pusher from 'pusher'
+import configDotenv from 'dotenv'
 
 
-const __filename = url.fileURLToPath(import.meta.url);  
-const __dirname = path.dirname(__filename);
-const serviceAccountPath = path.resolve(__dirname, './src/pages/new-app-2e4bb-firebase-adminsdk-qj8pn-69fdefd2d2.json');
-
-// Read the JSON file synchronously
-const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
-
-// Initialize Firebase Admin SDK
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://new-app-2e4bb.firebaseio.com'
-});
+configDotenv.config({path: './variables.env'})
 
 let app = express();
 
@@ -40,7 +30,9 @@ const pusher = new Pusher({
   logToConsole: true
 });
 
-mongoose.connect('mongodb+srv://dakshchoksi1507:lFJaFi5Pfcxtj8u1@cluster0.fspokbr.mongodb.net/', {
+const api_key = process.env.api_key
+
+mongoose.connect(api_key, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
